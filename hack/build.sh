@@ -39,6 +39,14 @@ function build_binary() {
   done
 }
 
+function go_clean_cache() {
+    set -x
+    # clean go cache avoid macos make error
+    # vendor/github.com/prometheus/client_golang/prometheus/expvar_collector.go:18:2: open /usr/local/go/src/expvar: too many open files in system
+    CGO_ENABLED=0 GOOS=${os} GOARCH=${arch} go clean -cache
+    set +x
+}
+
 function build_binary_for_platform() {
   local -r target=$1
   local -r platform=$2
