@@ -18,6 +18,8 @@ REPO_ROOT=$(dirname "${BASH_SOURCE[0]}")/..
 source "${REPO_ROOT}/hack/util.sh"
 
 function clean() {
-  rm -rf _tmp _output
+  echo "${REPO_ROOT}"/_tmp "${REPO_ROOT}"/_output
+  rm -rf "${REPO_ROOT}"/_tmp "${REPO_ROOT}"/_output
   util::go_clean_cache
 }
+clean
